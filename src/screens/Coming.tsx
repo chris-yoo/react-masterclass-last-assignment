@@ -98,7 +98,7 @@ const movieImageVariants = {
 function Coming() {
   const { scrollY } = useViewportScroll();
   const { data, isLoading } = useQuery<IAPIResponse>(
-    ["movie", "coming"],
+    ["movie2", "coming"],
     getComingSoon
   );
   const navigate = useNavigate();

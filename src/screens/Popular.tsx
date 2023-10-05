@@ -92,7 +92,7 @@ const movieImageVariants = {
 function Popular() {
   const { scrollY } = useViewportScroll();
   const { data, isLoading } = useQuery<IAPIResponse>(
-    ["movie", "popular"],
+    ["movie1", "popular"],
     getPopular
   );
   const navigate = useNavigate();
