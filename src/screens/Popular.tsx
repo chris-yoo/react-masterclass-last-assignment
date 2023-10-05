@@ -3,8 +3,8 @@ import { IAPIResponse, getPopular, makeBgPath, makeImagePath } from "../api";
 import styled from "styled-components";
 import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
 import { useMatch, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import MovieDetail from "../MovieDetail";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 interface MovieImgProps {
   bgPhoto: string;
@@ -54,6 +54,15 @@ const BigMovie = styled(motion.div)`
   right: 0;
   margin: 0 auto;
   z-index: 1;
+`;
+
+const CloseIcon = styled.div`
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  font-size: 30px;
 `;
 
 const Overay = styled(motion.div)`
@@ -124,9 +133,11 @@ function Popular() {
             <BigMovie
               style={{ top: scrollY.get() + 100 }}
               layoutId={movieMatch.params.movieId}
-              onClick={bigMovieClick}
               transition={{ type: "tween" }}
             >
+              <CloseIcon onClick={bigMovieClick}>
+                <AiFillCloseCircle />
+              </CloseIcon>
               <MovieDetail id={movieMatch.params.movieId + ""}></MovieDetail>
             </BigMovie>
           </>
