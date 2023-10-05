@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   justify-items: center;
 `;
 
-const Item = styled.div`
+const Item = styled(motion.div)`
   width: 200px;
   height: 350px;
 `;
@@ -107,24 +107,29 @@ function Popular() {
   return (
     <>
       <Wrapper>
-        {isLoading ? (
-          <Loading></Loading>
-        ) : (
-          data?.results.map((movie) => (
-            <Item>
-              <MovieImg
-                layoutId={movie.id + ""}
-                onClick={() => onBoxClicked(movie.id)}
-                variants={movieImageVariants}
-                initial="normal"
-                whileHover="hover"
-                transition={{ type: "tween" }}
-                bgPhoto={makeBgPath(movie.poster_path || "")}
-              />
-              <Title>{movie.title}</Title>
-            </Item>
-          ))
-        )}
+        <AnimatePresence>
+          {!isLoading &&
+            data?.results.map((movie, index) => (
+              <Item
+                key={movie.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <MovieImg
+                  layoutId={movie.id + ""}
+                  onClick={() => onBoxClicked(movie.id)}
+                  variants={movieImageVariants}
+                  initial="normal"
+                  whileHover="hover"
+                  transition={{ type: "tween" }}
+                  bgPhoto={makeBgPath(movie.poster_path || "")}
+                />
+                <Title>{movie.title}</Title>
+              </Item>
+            ))}
+        </AnimatePresence>
       </Wrapper>
       <AnimatePresence>
         {movieMatch ? (
