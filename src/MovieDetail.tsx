@@ -58,7 +58,7 @@ function MovieDetail({ id }: { id: string }) {
             <span>{data.title}</span>
             <span>{data.overview}</span>
             <span>{`Budget: $${data.budget}`}</span>
-            <span>{`Revenue: $${data.revenu}`}</span>
+            <span>{`Revenue: $${data.revenue}`}</span>
             <span>{`Runtime: ${data.runtime} minutes`}</span>
             <span>{`Rating: ${data.vote_average}`}</span>
             <span>{`Homepage: ${data.homepage}`}</span>
